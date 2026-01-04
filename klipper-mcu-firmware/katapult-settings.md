@@ -4,6 +4,17 @@
 * 15.11.2025
 * https://github.com/Arksine/katapult/commit/b0bf421069e2aab810db43d6e15f38817d981451
 
+# git checkout
+
+    git switch --detach b0bf421069e2aab810db43d6e15f38817d981451
+
+# Serial Baud Rate Requirement
+
+During testing it was found that the printer **must use a serial baud rate of 230400**.
+
+Using Klipper’s default baud rate of **250000 does not work at all** on this hardware.  
+With the default value, communication fails reliably (timeout) and the printer is not usable.
+
 # Settings
 
     Katapult Configuration v0.0.1-110-gb0bf421

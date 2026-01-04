@@ -4,6 +4,17 @@
 * 02.01.2026
 * https://github.com/Klipper3d/klipper/commit/e60fe3d99b545d7e42ff2f5278efa5822668a57c
 
+# git checkout
+
+    git switch --detach e60fe3d99b545d7e42ff2f5278efa5822668a57c
+
+# Serial Baud Rate Requirement
+
+During testing it was found that the printer **must use a serial baud rate of 230400**.
+
+Using Klipper’s default baud rate of **250000 does not work at all** on this hardware.  
+With the default value, communication fails reliably (timeout) and the printer is not usable.
+
 # Settings             
 
     Klipper Firmware Configuration
