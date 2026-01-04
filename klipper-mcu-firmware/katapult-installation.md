@@ -35,14 +35,17 @@ With the default value, communication fails reliably (timeout) and the printer i
 
 # Installation on MCU
 
-    KLIPPER_BOOTLOADER_FILE = "katapult.bin"
+    $ cd klipper-mcu-firmware/
+    $ export KLIPPER_BOOTLOADER_FILE="katapult.bin"
 
-    openocd \
+    # Erase MCU flash memory
+    $ openocd \
         -f interface/stlink.cfg \
         -f target/stm32f3x.cfg \
         -c "adapter_khz 100; init; halt; reset halt; flash erase_address 0x08000000 0x60000; flash erase_address 0x08060000 0x20000; exit"
-        
-    openocd \
+
+    # Flash katapult bootloader
+    $ openocd \
         -f interface/stlink.cfg \
         -f target/stm32f3x.cfg \
         -c "init; reset halt; flash write_image erase ${KLIPPER_BOOTLOADER_FILE} 0x08000000; verify_image ${KLIPPER_BOOTLOADER_FILE} 0x08000000; reset run; exit"

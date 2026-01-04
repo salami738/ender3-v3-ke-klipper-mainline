@@ -33,9 +33,10 @@ With the default value, communication fails reliably (timeout) and the printer i
 
 # Installation on MCU
 
-    KLIPPER_FW_FILE = "klipper.bin"
+    $ cd klipper-mcu-firmware/
+    $ export KLIPPER_FW_FILE="klipper.bin"
 
-    openocd \
+    $ openocd \
         -f interface/stlink.cfg \
         -f target/stm32f3x.cfg \
         -c "init; reset halt; flash write_image erase ${KLIPPER_FW_FILE} 0x08002000; verify_image ${KLIPPER_FW_FILE} 0x08002000; reset run; exit"
