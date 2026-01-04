@@ -32,3 +32,17 @@ With the default value, communication fails reliably (timeout) and the printer i
     [*] Support bootloader entry on rapid double click of reset button
     [ ] Enable bootloader entry on button (or gpio) state
     [ ] Enable Status LED
+
+# Installation on MCU
+
+    KLIPPER_BOOTLOADER_FILE = "katapult.bin"
+
+    openocd \
+        -f interface/stlink.cfg \
+        -f target/stm32f3x.cfg \
+        -c "adapter_khz 100; init; halt; reset halt; flash erase_address 0x08000000 0x60000; flash erase_address 0x08060000 0x20000; exit"
+        
+    openocd \
+        -f interface/stlink.cfg \
+        -f target/stm32f3x.cfg \
+        -c "init; reset halt; flash write_image erase ${KLIPPER_BOOTLOADER_FILE} 0x08000000; verify_image ${KLIPPER_BOOTLOADER_FILE} 0x08000000; reset run; exit"

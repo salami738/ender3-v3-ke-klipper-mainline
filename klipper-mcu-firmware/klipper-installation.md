@@ -30,3 +30,12 @@ With the default value, communication fails reliably (timeout) and the printer i
     (230400) Baud rate for serial port
     [*] Optimize stepper code for 'step on both edges'
     ()  GPIO pins to set at micro-controller startup
+
+# Installation on MCU
+
+    KLIPPER_FW_FILE = "klipper.bin"
+
+    openocd \
+        -f interface/stlink.cfg \
+        -f target/stm32f3x.cfg \
+        -c "init; reset halt; flash write_image erase ${KLIPPER_FW_FILE} 0x08002000; verify_image ${KLIPPER_FW_FILE} 0x08002000; reset run; exit"
