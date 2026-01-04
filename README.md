@@ -86,4 +86,15 @@ This project is community-driven and not affiliated with Creality.
 
 ## License
 
-Unless stated otherwise, all original co
+Unless stated otherwise, all original content in this repository is provided under an open-source license.  
+See the `LICENSE` file for details.
+
+---
+
+## Contributing
+
+Contributions are welcome.
+
+If you discover hardware quirks, configuration improvements, or documentation gaps, please open an issue or submit a pull request.
+
+Clear technical descriptions and reproducible steps are preferred.
