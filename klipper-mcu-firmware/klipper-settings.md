@@ -1,3 +1,9 @@
+# Klipper version
+
+* master
+* 02.01.2026
+* https://github.com/Klipper3d/klipper/commit/e60fe3d99b545d7e42ff2f5278efa5822668a57c
+
 # Settings             
 
     Klipper Firmware Configuration

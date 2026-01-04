@@ -1,3 +1,9 @@
+# Katapult version
+
+* master
+* 15.11.2025
+* https://github.com/Arksine/katapult/commit/b0bf421069e2aab810db43d6e15f38817d981451
+
 # Settings
 
     Katapult Configuration v0.0.1-110-gb0bf421
