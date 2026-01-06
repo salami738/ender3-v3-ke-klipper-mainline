@@ -1,3 +1,20 @@
-ich hab einen creality ender 3v3 ke mit dem nebula pad. das ist ein mips basierter sbc mit einem display dran auf dem eine creality gui läuft. diese funktioniert nicht mehr, seit ich auf mainline klipper gewechselt bin und ich möchte diese gerne durch klipper screen ersetzen.
+# Ender 3 V3 KE – Replacing Creality GUI with KlipperScreen
 
-https://github.com/ballaswag/guppyscreen
+## Overview
+
+I own a **Creality Ender 3 V3 KE** equipped with the **Nebula Pad**.  
+The Nebula Pad is a **MIPS-based single-board computer (SBC)** with an attached display that runs Creality’s proprietary graphical user interface.
+
+After switching to **mainline Klipper**, the original Creality GUI no longer works.  
+The goal of this project is to **replace the non-functional Creality GUI with KlipperScreen** and document the process.
+
+## Hardware
+
+- **Printer:** Creality Ender 3 V3 KE
+- **Controller / Display:** Nebula Pad
+- **Architecture:** MIPS-based SBC
+- **Display:** Integrated touchscreen
+
+# Links
+
+* https://github.com/ballaswag/guppyscreen
