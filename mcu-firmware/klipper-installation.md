@@ -24,7 +24,7 @@ With the default value, communication fails reliably (timeout) and the printer i
         Processor model (STM32F103)  --->
     [ ] Only 10KiB of RAM (for rare stm32f103x6 variant)
     [ ] Disable SWD at startup (for GigaDevice stm32f103 clones)
-        Bootloader offset (No bootloader)  --->
+        Bootloader offset (8KiB bootloader)  --->
         Clock Reference (8 MHz crystal)  --->
         Communication interface (Serial (on USART2 PA3/PA2))  --->
     (230400) Baud rate for serial port

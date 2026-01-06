@@ -2,11 +2,13 @@
 
 set -euo pipefail
 
-cd "$(dirname "$0")"
-
 SCRIPT_DIR="$(dirname "$0")"
-KLIPPER_DIR="$(cd "$(dirname "$0")/../../../klipper" && pwd)"
-echo "KLIPPER_DIR: $KLIPPER_DIR"
+cd "$SCRIPT_DIR"
+SCRIPT_DIR="$(pwd)"
+
+# echo "SCRIPT_DIR: $SCRIPT_DIR"
+KLIPPER_DIR="$(cd "${SCRIPT_DIR}/../../../klipper" && pwd)"
+# echo "KLIPPER_DIR: $KLIPPER_DIR"
 
 TC="$(cd ../../../mips-toolchain/mips32r5el--glibc--bleeding-edge-2018.11-1 && pwd)"
 echo "TC: $TC"
@@ -20,12 +22,12 @@ export CROSS_BIN="${TC}/mipsel-buildroot-linux-gnu/bin"
 export CROSS_PREFIX="${TC}/bin/mipsel-buildroot-linux-gnu-"
 
 pushd "$KLIPPER_DIR" >/dev/null
-make clean
+make clean KCONFIG_CONFIG="${SCRIPT_DIR}/klipper-host-mcu.config" >/dev/null
 # set Linux / Linux process
-make menuconfig
-make
+make menuconfig KCONFIG_CONFIG="${SCRIPT_DIR}/klipper-host-mcu.config"
+make -j$(nproc) KCONFIG_CONFIG="${SCRIPT_DIR}/klipper-host-mcu.config" >/dev/null
 popd >/dev/null
 
 "${SCRIPT_DIR}/../read-elf-infos.sh" "${KLIPPER_DIR}/out/klipper.elf" | tail -n 5
 
-cp -v "${KLIPPER_DIR}/out/klipper.elf" "$(dirname "$0")/klipper_mcu.elf"
+cp -v "${KLIPPER_DIR}/out/klipper.elf" "${SCRIPT_DIR}/klipper_mcu.elf"
