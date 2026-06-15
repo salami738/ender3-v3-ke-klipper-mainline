@@ -52,6 +52,88 @@ This project does **not** depend on those files but may reference them for compa
 
 ---
 
+## Current Configuration
+
+The main printer configuration is located at
+[`klipper/printer-config-files/printer.cfg`](klipper/printer-config-files/printer.cfg).
+It is intended for the stock Ender 3 V3 KE motion system and toolhead connected
+to the Nebula Pad.
+
+The configuration currently provides:
+
+- MCU and Klipper host MCU connections
+- Cartesian motion, travel limits, and homing
+- TMC stepper driver configuration and motor currents
+- Extruder and heated-bed temperature control
+- BLTouch-compatible probing and safe Z homing
+- Bed mesh limits and probing parameters
+- Adaptive bed mesh calibration before each print
+- Filament runout detection
+- Part-cooling and automatic hotend heatsink fan control
+- Load cell support and calibration
+- Accelerometer-based resonance testing and input shaping
+- Mainsail pause/resume helpers and object cancellation support
+- Print start/end and filament load/unload macros
+- Heater verification, idle timeout, and other safety-related limits
+
+All hardware parameters, limits, calibration results, and pin assignments are
+kept in the configuration files and are intentionally not duplicated here.
+
+### Included Configuration Files
+
+`printer.cfg` loads the following configuration fragments:
+
+| File | Purpose |
+| --- | --- |
+| [`gcode_macro.cfg`](klipper/printer-config-files/gcode_macro.cfg) | Print start/end, G29, and filament load/unload macros |
+| [`input_shaper.cfg`](klipper/printer-config-files/input_shaper.cfg) | ADXL345, resonance testing, and input shaper defaults |
+| [`load_cell.cfg`](klipper/printer-config-files/load_cell.cfg) | Stock HX711 load cell configuration |
+| [`fan.cfg`](klipper/printer-config-files/fan.cfg) | Part-cooling and hotend fan configuration |
+| `mainsail.cfg` | Mainsail macros, included from the installation on the printer |
+
+### Print Start Behavior
+
+The supplied `START_PRINT` macro:
+
+1. Aborts before heating if no filament is detected.
+2. Homes X and Y, then heats the bed.
+3. Homes Z with the bed at printing temperature.
+4. Generates an adaptive bed mesh for the defined print objects.
+5. Heats the nozzle and prints a purge line.
+
+Example slicer start G-code:
+
+```gcode
+PRINT_START BED=[bed_temperature_initial_layer_single] EXTRUDER=[nozzle_temperature_initial_layer]
+```
+
+Placeholder names vary between slicers. `BED` must contain the initial-layer
+bed temperature, not the maximum bed temperature used during the print.
+
+> [!CAUTION]
+> Calibration values and hardware limits in the supplied configuration must be
+> verified on the individual printer. The checked-in settings are not universal
+> calibration results.
+
+---
+
+## Repository Layout
+
+- [`klipper/`](klipper/) contains the mainline Klipper installation notes,
+  printer configuration, host MCU setup, and compiled C helper.
+- [`mcu-firmware/`](mcu-firmware/) contains MCU firmware build and installation
+  documentation.
+- [`printer-filesystem-patches/`](printer-filesystem-patches/) contains service
+  scripts and filesystem changes for the Nebula Pad.
+- [`pinout/`](pinout/) contains board pinout notes and reference images.
+- [`nebula-display/`](nebula-display/) contains notes about the stock display.
+- [`prerequisites.md`](prerequisites.md) documents preparation requirements.
+
+See [`klipper/klipper-installation.md`](klipper/klipper-installation.md) for the
+current deployment and slicer setup notes.
+
+---
+
 ## Scope
 
 This repository may include:

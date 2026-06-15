@@ -20,7 +20,18 @@
 # Install mainsail config
 
     root@Ender3V3KE-CE0D /usr/data [#] git clone https://github.com/mainsail-crew/mainsail-config.git
-    
+
+# Slicer start G-code
+
+Call the Klipper start macro with the first-layer bed temperature. Do not pass
+the maximum bed temperature used later in the print as `BED_TEMP`, otherwise the
+printer will heat to that higher value before waiting for the first-layer value.
+
+    PRINT_START BED=[bed_temperature_initial_layer_single] EXTRUDER=[nozzle_temperature_initial_layer]
+
+Adjust the placeholder names if needed. The important part is that `BED`
+receives the initial layer bed temperature.
+
 # Start klipper manually for debugging
 
     root@Ender3V3KE-CE0D / [#] /usr/share/klippy-env/bin/python /usr/data/klipper-mainline/klippy/klippy.py /usr/data/printer_data/config-mainline/printer.cfg
