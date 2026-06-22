@@ -6,6 +6,35 @@ The goal of this project is to enable a clean, transparent, and maintainable Kli
 
 ---
 
+## What This Gives You
+
+With the stock Nebula Pad, this repository provides a reasonably current
+mainline Klipper setup for the Ender 3 V3 KE that runs reliably and with good
+performance on the original hardware.
+
+The Nebula Pad is, however, a very constrained MIPS-based system. It has limited
+RAM and storage, and the stock environment does not include a compiler toolchain
+such as GCC. Because of that, it is not practical to use Klipper's normal
+in-place update workflow directly on the Nebula Pad.
+
+Klipper updates for this setup work differently:
+
+1. Update this repository with the desired upstream Klipper sources.
+2. Build the required components locally on an external computer, not on the
+   Nebula Pad.
+3. Transfer the rebuilt files to the printer / Nebula Pad again.
+
+This keeps the stock Nebula Pad usable while avoiding Creality's modified
+Klipper fork, but it is not the same experience as a full Linux host with native
+build tools and automatic Klipper updates.
+
+If you want the most streamlined Klipper setup, including regular Klipper update
+workflows and fewer platform constraints, consider replacing the Nebula Pad with
+a Raspberry Pi or similar host. The printer's main control board with the
+stepper motor drivers can remain in place; only the Klipper host changes.
+
+---
+
 ## Background
 
 Creality ships the Ender 3 V3 KE with a preinstalled version of Klipper.  
